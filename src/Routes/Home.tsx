@@ -64,9 +64,6 @@ export default function Home() {
   console.log(data);
   
   
-
-  
-
   return (
     <Wrapper>
       <Title>맛있는요리</Title>
