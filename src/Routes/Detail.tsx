@@ -126,14 +126,14 @@ export default function Detail() {
   console.log(data);
   return (
     <Wrapper>
-      <Link to="/"><Back src="/images/back@2x.png"></Back></Link>
+      <Link to="/"><Back src="/images/back@2x.png" alt="back"></Back></Link>
       <Image src={data?.picture}/>
       <FoodName>{data?.name}</FoodName>
       <FoodDescription>{data?.description}</FoodDescription>
       <FoodInfo>
-        <FoodTime><img src="/images/time.png"></img> {data?.cookingTime}분</FoodTime>
-        <FoodServing><img src="/images/serving.png"></img> {data?.servings}인분</FoodServing>
-        <FoodKcal><img src="/images/kcal.png"/> {data?.kcal}kcal</FoodKcal>
+        <FoodTime><img src="/images/time.png" alt='time'></img> {data?.cookingTime}분</FoodTime>
+        <FoodServing><img src="/images/serving.png" alt='serving'></img> {data?.servings}인분</FoodServing>
+        <FoodKcal><img src="/images/kcal.png" alt='kcal'/> {data?.kcal}kcal</FoodKcal>
       </FoodInfo>
       <FoodContent>
         <Title>재료</Title>
@@ -142,7 +142,7 @@ export default function Detail() {
             return(
               <Ingredients key={i}>
                 <Ig>
-                  <img src="/images/check_full.png"/>
+                  <img src="/images/check_full.png" alt="check"/>
                   {a}
                 </Ig>
               </Ingredients>
@@ -157,7 +157,7 @@ export default function Detail() {
             return(
               <Ingredients key={i}>
                 <Ig>
-                  <img src="/images/check_full.png"/>
+                  <img src="/images/check_full.png" alt="check"/>
                   {a}
                 </Ig>
               </Ingredients>

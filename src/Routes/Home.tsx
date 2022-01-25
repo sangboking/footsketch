@@ -73,12 +73,12 @@ export default function Home() {
       {data?.map((food)=>{
         return (
           <Food key={food.id}>
-            <Image src={food.picture}/>
+            <Image src={food.picture} alt='food'/>
             <FoodWrapper>
               <Link className='link' 
                 to={`/detail/${food.id}`}><FoodName>{food.name}</FoodName></Link>
               <FoodTime>
-                <img src="images/time_gray.png"/> {food.cookingTime}분 
+                <img src="images/time_gray.png" alt="time"/> {food.cookingTime}분 
               </FoodTime>
             </FoodWrapper>
           </Food>
