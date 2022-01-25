@@ -121,7 +121,7 @@ export default function Detail() {
 
   
 
-  const {data,isLoading} = useQuery<IRecipe>("RecipeDetail",()=>fetchRecipeDetail(id as any));
+  const {data} = useQuery<IRecipe>("RecipeDetail",()=>fetchRecipeDetail(id as any));
 
   console.log(data);
   return (

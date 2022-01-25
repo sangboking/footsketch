@@ -40,6 +40,9 @@ export default function Home() {
   const FoodWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    .link{
+      color:black;
+    }
   `;
 
   const FoodName = styled.div`
@@ -60,7 +63,7 @@ export default function Home() {
     picture:string;
   }
 
-  const {data,isLoading} = useQuery<IRecipe[]>("Recipe",fetchRecipe);
+  const {data} = useQuery<IRecipe[]>("Recipe",fetchRecipe);
   console.log(data);
   
   
