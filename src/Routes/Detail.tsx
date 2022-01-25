@@ -1,5 +1,5 @@
 import { useQuery } from 'react-query';
-import { useParams } from 'react-router-dom';
+import { useParams,Link } from 'react-router-dom';
 import { fetchRecipeDetail } from './Api';
 import styled from 'styled-components';
 
@@ -7,6 +7,14 @@ const Wrapper = styled.div`
    width:40%;
    height: 150vh;
    margin:0 auto;
+   position: relative;
+`;
+
+const Back = styled.img`
+  position: absolute;
+  top:15px;
+  left:15px;
+  cursor: pointer;
 `;
 
 const Image = styled.img`
@@ -49,6 +57,46 @@ const FoodKcal = styled.div`
 
 `;
 
+const FoodContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding:20px 20px;
+`;
+
+const Title = styled.h1`
+  font-size:20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+`;
+
+const Ingredients = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Ig = styled.div`
+  display: flex;
+  img{
+    margin-right: 10px;
+  }
+`;
+
+const CookStep = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+`;
+
+const Box = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width:25px;
+  height:25px;
+  background-color: yellow;
+  margin-bottom: 10px;
+  font-weight: 700;
+`;
+
 
 
 interface Params {
@@ -78,6 +126,7 @@ export default function Detail() {
   console.log(data);
   return (
     <Wrapper>
+      <Link to="/"><Back src="/images/back@2x.png"></Back></Link>
       <Image src={data?.picture}/>
       <FoodName>{data?.name}</FoodName>
       <FoodDescription>{data?.description}</FoodDescription>
@@ -86,6 +135,49 @@ export default function Detail() {
         <FoodServing><img src="/images/serving.png"></img> {data?.servings}인분</FoodServing>
         <FoodKcal><img src="/images/kcal.png"/> {data?.kcal}kcal</FoodKcal>
       </FoodInfo>
+      <FoodContent>
+        <Title>재료</Title>
+        {
+          data?.ingredients.map((a,i)=>{
+            return(
+              <Ingredients key={i}>
+                <Ig>
+                  <img src="/images/check_full.png"/>
+                  {a}
+                </Ig>
+              </Ingredients>
+            )
+          })
+        }
+      </FoodContent>
+      <FoodContent>
+        <Title>양념장</Title>
+        {
+          data?.spices.map((a,i)=>{
+            return(
+              <Ingredients key={i}>
+                <Ig>
+                  <img src="/images/check_full.png"/>
+                  {a}
+                </Ig>
+              </Ingredients>
+            )
+          })
+        }
+      </FoodContent>
+      <FoodContent>
+        <Title>만들어 봅시다!</Title>
+        {
+          data?.cookingSteps.map((a,i)=>{
+            return(
+              <CookStep key={i}>
+                <Box>{i+1}</Box>
+                {a}
+              </CookStep>
+            )
+          })
+        }
+      </FoodContent>
     </Wrapper>
   );
 }

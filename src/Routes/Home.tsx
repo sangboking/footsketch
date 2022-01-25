@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { fetchRecipe } from './Api';
 import styled from 'styled-components';
