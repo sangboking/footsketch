@@ -40,6 +40,7 @@ const Wrapper = styled.div`
     flex-direction: column;
     .link{
       color:black;
+      text-decoration: none;
     }
   `;
 
@@ -51,7 +52,18 @@ const Wrapper = styled.div`
   `;
 
   const FoodTime = styled.div`
+    display: flex;
+    &:first-child{
+      margin-right: 20px;
+    }
+  `;
+
+  const Image2 = styled.img`
     
+  `;
+
+  const Time = styled.div`
+    margin-right: 30px;
   `;
 
   const Category = styled.div`
@@ -86,6 +98,7 @@ export default function Home() {
   const sortData = data?.sort(function(a,b){
     return a.name<b.name ? -1 : a.name > b.name ? 1:0;
   }); //받아온 data 이름 순으로 정렬
+  const arr = ["5,430","3,234","2,340","1,203","1,003","940","3,203"]
   
   
   return (
@@ -95,7 +108,7 @@ export default function Home() {
         <>
           <Title>맛있는요리</Title>
           <Category>한국요리</Category>
-          {sortData?.filter(a=>a.category==="korean").map((food)=>{
+          {sortData?.filter(a=>a.category==="korean").map((food,i)=>{
             return (
               <Food key={food.id}>
                 <Image src={food.picture} alt='food'/>
@@ -103,7 +116,8 @@ export default function Home() {
                   <Link className='link' 
                     to={`/detail/${food.id}`}><FoodName>{food.name}</FoodName></Link>
                   <FoodTime>
-                    <img src="images/time_gray.png" alt="time"/> {food.cookingTime}분 
+                    <Image2 src="images/time_gray.png" alt="time"></Image2><Time>{food.cookingTime}분</Time>
+                    <Image2 src="images/eye.png" alt="eye"/>{arr[i]}
                   </FoodTime>
                 </FoodWrapper>
               </Food>
@@ -111,7 +125,7 @@ export default function Home() {
           })}
 
           <Category>일본요리</Category>
-          {data?.filter(a=>a.category==="japanese").map((food)=>{
+          {data?.filter(a=>a.category==="japanese").map((food,i)=>{
             return (
               <Food key={food.id}>
                 <Image src={food.picture} alt='food'/>
@@ -119,7 +133,8 @@ export default function Home() {
                   <Link className='link' 
                     to={`/detail/${food.id}`}><FoodName>{food.name}</FoodName></Link>
                   <FoodTime>
-                    <img src="images/time_gray.png" alt="time"/> {food.cookingTime}분 
+                    <Image2 src="images/time_gray.png" alt="time"></Image2><Time>{food.cookingTime}분</Time>
+                    <Image2 src="images/eye.png" alt="eye"/> {arr[i+4]}
                   </FoodTime>
                 </FoodWrapper>
               </Food>
