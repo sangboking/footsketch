@@ -97,6 +97,13 @@ const Box = styled.div`
   font-weight: 700;
 `;
 
+const Loader = styled.div`
+position: absolute;
+top:50%;
+left:50%;
+font-size: 30px;
+`;
+
 
 
 interface Params {
@@ -118,66 +125,67 @@ interface IRecipe {
 
 export default function Detail() {
   const {id}:Params = useParams();
-
-  
-
-  const {data} = useQuery<IRecipe>("RecipeDetail",()=>fetchRecipeDetail(id as any));
+  const {data,isLoading} = useQuery<IRecipe>("RecipeDetail",()=>fetchRecipeDetail(id as any));
 
   console.log(data);
   return (
     <Wrapper>
-      <Link to="/"><Back src="/images/back@2x.png" alt="back"></Back></Link>
-      <Image src={data?.picture}/>
-      <FoodName>{data?.name}</FoodName>
-      <FoodDescription>{data?.description}</FoodDescription>
-      <FoodInfo>
-        <FoodTime><img src="/images/time.png" alt='time'></img> {data?.cookingTime}분</FoodTime>
-        <FoodServing><img src="/images/serving.png" alt='serving'></img> {data?.servings}인분</FoodServing>
-        <FoodKcal><img src="/images/kcal.png" alt='kcal'/> {data?.kcal}kcal</FoodKcal>
-      </FoodInfo>
-      <FoodContent>
-        <Title>재료</Title>
-        {
-          data?.ingredients.map((a,i)=>{
-            return(
-              <Ingredients key={i}>
-                <Ig>
-                  <img src="/images/check_full.png" alt="check"/>
-                  {a}
-                </Ig>
-              </Ingredients>
-            )
-          })
-        }
-      </FoodContent>
-      <FoodContent>
-        <Title>양념장</Title>
-        {
-          data?.spices.map((a,i)=>{
-            return(
-              <Ingredients key={i}>
-                <Ig>
-                  <img src="/images/check_full.png" alt="check"/>
-                  {a}
-                </Ig>
-              </Ingredients>
-            )
-          })
-        }
-      </FoodContent>
-      <FoodContent>
-        <Title>만들어 봅시다!</Title>
-        {
-          data?.cookingSteps.map((a,i)=>{
-            return(
-              <CookStep key={i}>
-                <Box>{i+1}</Box>
-                {a}
-              </CookStep>
-            )
-          })
-        }
-      </FoodContent>
+      {isLoading?<Loader>로딩중입니다</Loader>:
+        <>
+          <Link to="/"><Back src="/images/back@2x.png" alt="back"></Back></Link>
+          <Image src={data?.picture}/>
+          <FoodName>{data?.name}</FoodName>
+          <FoodDescription>{data?.description}</FoodDescription>
+          <FoodInfo>
+            <FoodTime><img src="/images/time.png" alt='time'></img> {data?.cookingTime}분</FoodTime>
+            <FoodServing><img src="/images/serving.png" alt='serving'></img> {data?.servings}인분</FoodServing>
+            <FoodKcal><img src="/images/kcal.png" alt='kcal'/> {data?.kcal}kcal</FoodKcal>
+          </FoodInfo>
+          <FoodContent>
+            <Title>재료</Title>
+            {
+              data?.ingredients.map((a,i)=>{
+                return(
+                  <Ingredients key={i}>
+                    <Ig>
+                      <img src="/images/check_full.png" alt="check"/>
+                      {a}
+                    </Ig>
+                  </Ingredients>
+                )
+              })
+            }
+          </FoodContent>
+          <FoodContent>
+            <Title>양념장</Title>
+            {
+              data?.spices.map((a,i)=>{
+                return(
+                  <Ingredients key={i}>
+                    <Ig>
+                      <img src="/images/check_full.png" alt="check"/>
+                      {a}
+                    </Ig>
+                  </Ingredients>
+                )
+              })
+            }
+          </FoodContent>
+          <FoodContent>
+            <Title>만들어 봅시다!</Title>
+            {
+              data?.cookingSteps.map((a,i)=>{
+                return(
+                  <CookStep key={i}>
+                    <Box>{i+1}</Box>
+                    {a}
+                  </CookStep>
+                )
+              })
+            }
+          </FoodContent>
+            </>
+          }
     </Wrapper>
   );
 }
