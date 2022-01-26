@@ -173,7 +173,7 @@ export default function Home() {
           {data?.filter(a=>a.category==="japanese").map((food,i)=>{
             return (
               <Food key={food.id}>
-                <Image src={food.picture} alt='food'/>
+                <Link to={`/detail/${food.id}`}><Image src={food.picture} alt='food'/></Link>
                 <FoodWrapper>
                   <Link className='link' 
                     to={`/detail/${food.id}`}><FoodName>{food.name}</FoodName></Link>
