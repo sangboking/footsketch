@@ -9,10 +9,10 @@ const Wrapper = styled.div`
    margin:0 auto;
    position: relative;
    @media screen and (max-width:820px) {
-     width:40rem;
+     width:35rem;
    }
    @media screen and (max-width:630px) {
-     width:27rem;
+     width:24rem;
    }
 `;
 
