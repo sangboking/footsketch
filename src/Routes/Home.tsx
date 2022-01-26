@@ -11,7 +11,7 @@ const Wrapper = styled.div`
      width:35rem;
    }
    @media screen and (max-width:630px) {
-     width:24rem;
+     width:25rem;
    }
   `;
 
@@ -35,7 +35,8 @@ const Wrapper = styled.div`
     width:100%;
     background-color: white;
     border-bottom: 1px solid lightgray;
-    padding:20px 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     display: flex;
     margin:0 auto;
   `;

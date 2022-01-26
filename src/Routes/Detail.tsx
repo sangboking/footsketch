@@ -12,7 +12,7 @@ const Wrapper = styled.div`
      width:35rem;
    }
    @media screen and (max-width:630px) {
-     width:24rem;
+     width:25rem;
    }
 `;
 
