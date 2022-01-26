@@ -11,7 +11,7 @@ const Wrapper = styled.div`
      width:40rem;
    }
    @media screen and (max-width:630px) {
-     width:30rem;
+     width:27rem;
    }
   `;
 
@@ -23,6 +23,12 @@ const Wrapper = styled.div`
    padding:20px;
    font-size:3rem;
    font-weight: 700;
+   @media screen and (max-width:820px) {
+     font-size:2.5rem
+   }
+   @media screen and (max-width:630px) {
+     font-size: 2rem;
+   }
   `;
 
   const Food = styled.div`
@@ -39,6 +45,11 @@ const Wrapper = styled.div`
     height:8rem;
     border-radius: 15px;
     margin-right: 10px;
+    transition: .3s;
+    &:hover{
+      width:8.5rem;
+      height:8.5rem;
+    }
   `;
 
   const FoodWrapper = styled.div`
@@ -52,10 +63,16 @@ const Wrapper = styled.div`
   `;
 
   const FoodName = styled.div`
-    font-size:20px;
+    font-size:1.3rem;
     font-weight: 700;
     padding-top:20px;
     margin-bottom: 2rem;
+    @media screen and (max-width:820px) {
+     font-size:1rem;
+   }
+   @media screen and (max-width:630px) {
+     font-size:0.9rem;
+   }
   `;
 
   const FoodTime = styled.div`
@@ -78,11 +95,17 @@ const Wrapper = styled.div`
     width:100%;
     background-color: lightgray;
     padding:1rem 0;
-    font-size:20px;
+    font-size:1.7rem;
     font-weight: 700;
     h1{
       margin-left: 1.5rem;
     }
+    @media screen and (max-width:820px) {
+     font-size:1.5rem
+   }
+   @media screen and (max-width:630px) {
+     font-size: 1.3rem;
+   }
   `;
 
   const Loader = styled.div`
@@ -112,10 +135,13 @@ const Wrapper = styled.div`
 export default function Home() {
 
   
-  const {data,isLoading} = useQuery<IRecipe[]>("Recipe",fetchRecipe);
+  const {data,isLoading} = useQuery<IRecipe[]>("Recipe",fetchRecipe); //react-query 라이브러리 사용
+  
   const sortData = data?.sort(function(a,b){
     return a.name<b.name ? -1 : a.name > b.name ? 1:0;
   }); //받아온 data 이름 순으로 정렬
+
+  
   const arr = ["5,430","3,234","2,340","1,203","1,003","940","3,203"] //조회수 데이터가 Api에 없어서 만들어서 적용하였습니다.
   
   
