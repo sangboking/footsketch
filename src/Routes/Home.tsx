@@ -7,6 +7,12 @@ const Wrapper = styled.div`
    width:50rem;
    height: 100vh;
    margin:0 auto;
+   @media screen and (max-width:820px) {
+     width:40rem;
+   }
+   @media screen and (max-width:630px) {
+     width:30rem;
+   }
   `;
 
   const Title = styled.h1`
