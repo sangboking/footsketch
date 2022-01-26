@@ -4,10 +4,16 @@ import { fetchRecipeDetail } from './Api';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-   width:40%;
+   width:50rem;
    height: 150vh;
    margin:0 auto;
    position: relative;
+   @media screen and (max-width:820px) {
+     width:40rem;
+   }
+   @media screen and (max-width:630px) {
+     width:30rem;
+   }
 `;
 
 const Back = styled.img`
@@ -20,21 +26,34 @@ const Back = styled.img`
 const Image = styled.img`
   width:100%;
   height:30vh;
+  overflow-x: hidden;
 `;
 
 const FoodName = styled.h1`
-  font-size: 30px;
+  font-size: 3rem;
   font-weight: 700;
   padding:20px 20px;
   margin-bottom: 5px;
+  @media screen and (max-width:820px) {
+     font-size:2.5rem;
+   }
+   @media screen and (max-width:620px) {
+     font-size:2rem;
+   }
 `;
 
 const FoodDescription = styled.div`
-  font-size:15px;
+  font-size:1rem;
   font-weight: 400;
   padding:10px 20px;
   color:gray;
   margin-bottom: 20px;
+  @media screen and (max-width:820px) {
+     font-size:0.9rem;
+   }
+   @media screen and (max-width:620px) {
+     font-size:0.8rem;
+   }
 `;
 
 const FoodInfo = styled.div`
@@ -84,6 +103,14 @@ const CookStep = styled.div`
   display: flex;
   flex-direction: column;
   margin-bottom: 20px;
+  font-size:1rem;
+  font-weight:400;
+  @media screen and (max-width:820px) {
+     font-size:0.9rem;
+   }
+   @media screen and (max-width:620px) {
+     font-size:0.8rem;
+   }
 `;
 
 const Box = styled.div`
@@ -98,10 +125,17 @@ const Box = styled.div`
 `;
 
 const Loader = styled.div`
-position: absolute;
-top:50%;
-left:50%;
-font-size: 30px;
+  position:fixed;
+  top:0; left:0;
+  height:100%;
+  width:100%;
+  z-index: 10000;
+  background: #fff;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  overflow:hidden;
+  font-size:3rem;
 `;
 
 
@@ -130,7 +164,7 @@ export default function Detail() {
   console.log(data);
   return (
     <Wrapper>
-      {isLoading?<Loader>로딩중입니다</Loader>:
+      {isLoading?<Loader><img src="/images/loader.gif" alt="loader"/></Loader>:
         <>
           <Link to="/"><Back src="/images/back@2x.png" alt="back"></Back></Link>
           <Image src={data?.picture}/>

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Wrapper = styled.div`
-   width:50%;
+   width:50rem;
    height: 100vh;
    margin:0 auto;
   `;
@@ -15,7 +15,7 @@ const Wrapper = styled.div`
    display: flex;
    align-items:flex-end;
    padding:20px;
-   font-size:50px;
+   font-size:3rem;
    font-weight: 700;
   `;
 
@@ -29,8 +29,8 @@ const Wrapper = styled.div`
   `;
 
   const Image = styled.img`
-    width:100px;
-    height:100px;
+    width:8rem;
+    height:8rem;
     border-radius: 15px;
     margin-right: 10px;
   `;
@@ -38,6 +38,7 @@ const Wrapper = styled.div`
   const FoodWrapper = styled.div`
     display: flex;
     flex-direction: column;
+    margin-left: 1rem;
     .link{
       color:black;
       text-decoration: none;
@@ -47,12 +48,13 @@ const Wrapper = styled.div`
   const FoodName = styled.div`
     font-size:20px;
     font-weight: 700;
-    padding-top:15px;
-    margin-bottom: 5px;
+    padding-top:20px;
+    margin-bottom: 2rem;
   `;
 
   const FoodTime = styled.div`
     display: flex;
+    color:gray;
     &:first-child{
       margin-right: 20px;
     }
@@ -69,16 +71,26 @@ const Wrapper = styled.div`
   const Category = styled.div`
     width:100%;
     background-color: lightgray;
-    padding:10px 10px;
+    padding:1rem 0;
     font-size:20px;
     font-weight: 700;
+    h1{
+      margin-left: 1.5rem;
+    }
   `;
 
   const Loader = styled.div`
-    position: absolute;
-    top:50%;
-    left:50%;
-    font-size: 30px;
+    position:fixed;
+    top:0; left:0;
+    height:100%;
+    width:100%;
+    z-index: 10000;
+    background: #fff;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    overflow:hidden;
+    font-size:3rem;
   `;
 
   
@@ -98,20 +110,20 @@ export default function Home() {
   const sortData = data?.sort(function(a,b){
     return a.name<b.name ? -1 : a.name > b.name ? 1:0;
   }); //받아온 data 이름 순으로 정렬
-  const arr = ["5,430","3,234","2,340","1,203","1,003","940","3,203"]
+  const arr = ["5,430","3,234","2,340","1,203","1,003","940","3,203"] //조회수 데이터가 Api에 없어서 만들어서 적용하였습니다.
   
   
   return (
     <Wrapper>
       {
-        isLoading?<Loader>로딩중입니다</Loader>:
+        isLoading?<Loader><img src="images/loader.gif" alt="loader"/></Loader>:
         <>
           <Title>맛있는요리</Title>
-          <Category>한국요리</Category>
+          <Category><h1>한국요리</h1></Category>
           {sortData?.filter(a=>a.category==="korean").map((food,i)=>{
             return (
               <Food key={food.id}>
-                <Image src={food.picture} alt='food'/>
+                <Link to={`/detail/${food.id}`}><Image src={food.picture} alt='food'/></Link>
                 <FoodWrapper>
                   <Link className='link' 
                     to={`/detail/${food.id}`}><FoodName>{food.name}</FoodName></Link>
@@ -124,7 +136,7 @@ export default function Home() {
             )
           })}
 
-          <Category>일본요리</Category>
+          <Category><h1>일본요리</h1></Category>
           {data?.filter(a=>a.category==="japanese").map((food,i)=>{
             return (
               <Food key={food.id}>
